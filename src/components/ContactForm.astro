@@ -11,7 +11,11 @@ import { contactFields } from '../utils/contact';
       {contactFields.map(field => (
         field.type === 'textarea'
           ? <label class="font-semibold text-blue-100">{field.label} : <textarea name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} /></label>
-          : <label class="font-semibold text-blue-100">{field.label} : <input type={field.type as 'text' | 'email' | 'password' | 'tel'} name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} /></label>
+          : field.type === 'email'
+            ? <label class="font-semibold text-blue-100">{field.label} : <input type="email" name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} pattern="^[^@\s]+@[^@\s]+\.[^@\s]+$" /></label>
+            : field.type === 'tel'
+              ? <label class="font-semibold text-blue-100">{field.label} : <input type="tel" name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} pattern="^\+?\d{8,15}$" placeholder="ex: 0612345678" /></label>
+              : <label class="font-semibold text-blue-100">{field.label} : <input type={field.type as 'text' | 'password'} name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} /></label>
       ))}
       <button type="submit" class="px-4 py-2 text-sm font-bold text-white transition-colors duration-200 bg-blue-800 border-2 border-blue-800 rounded sm:px-6 sm:py-3 hover:bg-blue-700 hover:border-blue-600 sm:text-base" id="send-btn">Envoyer</button>
       <div id="form-status" class="mt-2 text-center text-sm"></div>
