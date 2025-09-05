@@ -1,0 +1,56 @@
+---
+import '../styles/animations.css';
+import { contactFields } from '../utils/contact';
+---
+
+<section class="relative flex flex-col items-center justify-center w-full px-2 mb-8 sm:px-4 animate-fade-in min-h-[350px] sm:min-h-[420px]">
+  <div class="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-blue-900 to-gray-800 opacity-90 blur-xl min-h-full"></div>
+  <div class="relative z-10 flex flex-col items-center w-full max-w-md p-4 border-2 border-blue-800 shadow-2xl sm:p-8 rounded-2xl bg-gray-900/90 backdrop-blur-md">
+    <h2 class="mb-6 text-2xl font-extrabold tracking-wide text-center text-blue-200 sm:text-3xl">Contactez-moi</h2>
+    <form class="flex flex-col w-full gap-3 sm:gap-4" id="contact-form">
+      {contactFields.map(field => (
+        field.type === 'textarea'
+          ? <label class="font-semibold text-blue-100">{field.label} : <textarea name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} /></label>
+          : <label class="font-semibold text-blue-100">{field.label} : <input type={field.type as 'text' | 'email' | 'password' | 'tel'} name={field.name} class="w-full p-2 text-sm text-blue-100 transition bg-gray-800 border-2 border-blue-800 rounded sm:p-3 focus:border-blue-500 focus:ring-2 focus:ring-blue-800 sm:text-base" required={field.required} /></label>
+      ))}
+      <button type="submit" class="px-4 py-2 text-sm font-bold text-white transition-colors duration-200 bg-blue-800 border-2 border-blue-800 rounded sm:px-6 sm:py-3 hover:bg-blue-700 hover:border-blue-600 sm:text-base" id="send-btn">Envoyer</button>
+      <div id="form-status" class="mt-2 text-center text-sm"></div>
+    </form>
+    <script type="module">
+      const form = document.getElementById('contact-form');
+      const status = document.getElementById('form-status');
+      const btn = document.getElementById('send-btn');
+      form?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        status.textContent = '';
+        btn.disabled = true;
+        btn.textContent = 'Envoi...';
+        const data = Object.fromEntries(new FormData(form));
+        try {
+          const res = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+          });
+          const json = await res.json();
+          if (json.success) {
+            status.textContent = 'Message envoyé !';
+            status.className = 'mt-2 text-center text-green-400 text-sm';
+            form.reset();
+          } else {
+            status.textContent = json.error || 'Erreur lors de l\'envoi.';
+            status.className = 'mt-2 text-center text-red-400 text-sm';
+          }
+        } catch (err) {
+          status.textContent = 'Erreur réseau.';
+          status.className = 'mt-2 text-center text-red-400 text-sm';
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Envoyer';
+        }
+      });
+    </script>
+  </div>
+</section>
+
+

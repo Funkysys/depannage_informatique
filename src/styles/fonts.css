@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-nav: "Orbitron", Arial, sans-serif;
+}
+
+.font-nav {
+  font-family: var(--font-nav);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}

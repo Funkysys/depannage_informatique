@@ -1,0 +1,10 @@
+---
+import { cards } from "../utils/cards";
+import Card from "./Card.astro";
+---
+
+<div class="flex flex-wrap justify-center w-full gap-6">
+  {cards.map(card => (
+    <Card {...card} />
+  ))}
+</div>
