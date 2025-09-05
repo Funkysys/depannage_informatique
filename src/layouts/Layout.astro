@@ -1,15 +1,66 @@
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<link rel="stylesheet" href="/src/styles/tailwind.css" />
 		<link rel="stylesheet" href="/src/styles/fonts.css" />
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="stylesheet" href="/src/styles/tailwind.css" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+			<title>{Astro.props.title ?? 'Dépannage Informatique - Réparation, Conseil & Services à domicile'}</title>
+			<meta name="description" content="Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels. Intervention rapide et conseils personnalisés." />
+			<meta name="robots" content="index, follow" />
+			<meta name="author" content="FlowUP" />
+			<meta name="keywords" content="dépannage informatique, réparation PC, assistance informatique, cybersécurité, installation, conseil, maintenance, ordinateur, Mac, Windows, Paris, Île-de-France" />
+			<meta name="theme-color" content="#0ea5e9" />
+			<link rel="canonical" href="https://tondomaine.fr{Astro.url.pathname}" />
+			<link rel="alternate" href="https://tondomaine.fr{Astro.url.pathname}" hreflang="fr" />
+			<!-- Open Graph -->
+			<meta property="og:type" content="website" />
+			<meta property="og:locale" content="fr_FR" />
+			<meta property="og:title" content="Dépannage Informatique - Réparation, Conseil & Services à domicile" />
+			<meta property="og:description" content="Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels." />
+			<meta property="og:url" content="https://tondomaine.fr{Astro.url.pathname}" />
+			<meta property="og:site_name" content="Dépannage Informatique" />
+			<meta property="og:image" content="https://tondomaine.fr/og-image.png" />
+			<!-- Twitter Card -->
+			<meta name="twitter:card" content="summary_large_image" />
+			<meta name="twitter:title" content="Dépannage Informatique - Réparation, Conseil & Services à domicile" />
+			<meta name="twitter:description" content="Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels." />
+			<meta name="twitter:image" content="https://tondomaine.fr/og-image.png" />
+			<!-- Favicon Apple/Windows -->
+			<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+			<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+			<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+			<link rel="manifest" href="/site.webmanifest" />
+			<!-- Schema.org Organization -->
+			<script type="application/ld+json">
+				{JSON.stringify({
+					'@context': 'https://schema.org',
+					'@type': 'LocalBusiness',
+					name: 'Dépannage Informatique',
+					url: 'https://tondomaine.fr',
+					logo: 'https://tondomaine.fr/og-image.png',
+					image: 'https://tondomaine.fr/og-image.png',
+					description: 'Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels.',
+					address: {
+						'@type': 'PostalAddress',
+						addressLocality: 'Paris',
+						addressRegion: 'Île-de-France',
+						addressCountry: 'FR',
+					},
+					contactPoint: {
+						'@type': 'ContactPoint',
+						telephone: '+33-6-12-34-56-78',
+						contactType: 'customer service',
+					},
+					sameAs: [
+						'https://www.linkedin.com/in/tonprofil',
+						'https://github.com/tonprofil'
+					]
+				})}
+			</script>
 	</head>
 	<body class=" w-[100vw] min-h-[100vh] overflow-x-hidden">
 		<nav class="w-[100vw] shadow min:h-full bg-gradient-to-r from-gray-900 via-sky-950 to-gray-800 font-nav">
