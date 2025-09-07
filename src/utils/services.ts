@@ -7,7 +7,7 @@ export const services: Service[] = [
   {
     name: "Nettoyage",
     description:
-      "Nettoyage physique et/ou informatique de votre ordinateur comprenant les vérifications de sécruité.",
+      "Nettoyage physique et/ou informatique de votre ordinateur comprenant les vérifications de sécurité.",
   },
   {
     name: "Installation",
