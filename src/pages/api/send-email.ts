@@ -19,8 +19,8 @@ export const POST: APIRoute = async ({ request }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "antoine@antoineinformatique.eu",
-        to: "antoine@antoineinformatique.eu",
+        from: "antoine@antoineinformatique.fr",
+        to: "antoine@antoineinformatique.fr",
         subject: `Nouveau message de ${name}`,
         reply_to: email,
         html:
