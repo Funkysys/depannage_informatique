@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
       },
       body: JSON.stringify({
         from: "antoine@antoineinformatique.fr",
-        to: "antoine@antoineinformatique.fr",
+        to: "antoine.delbos.developpement@gmail.com",
         subject: `Nouveau message de ${name}`,
         reply_to: email,
         html:
