@@ -1,6 +1,7 @@
 export type Service = {
   name: string;
   description: string;
+  link?: string;
 };
 
 export const services: Service[] = [
@@ -33,5 +34,6 @@ export const services: Service[] = [
     name: "Développement Web",
     description:
       "Création et développement de votre projet de site internet ou application web. La personnalisation est au cœur de notre démarche.",
+    link: "https://antoinedelbos-portefolio.vercel.app",
   },
 ];

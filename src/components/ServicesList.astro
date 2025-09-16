@@ -11,9 +11,13 @@ import { services } from '../utils/services';
     <h2 class="mb-8 text-xl font-extrabold tracking-wide text-center text-blue-200 sm:text-2xl md:text-3xl">Nos services</h2>
     <div class="flex flex-col gap-4 sm:hidden">
       {services.map(service => (
-  <div class="flex flex-col gap-2 p-4 rounded-xl bg-blue-900/30 border border-custom-border shadow hover:bg-blue-900/50 transition">
+        <div class="flex flex-col gap-2 p-4 rounded-xl bg-blue-900/30 border border-custom-border shadow hover:bg-blue-900/50 transition">
           <span class="block text-sm font-bold text-blue-100">{service.name}</span>
-          <span class="block text-blue-50 italic text-xs">{service.description}</span>
+          <span class="block text-blue-50 italic text-xs">{service.description}
+            {service.link && (
+              <a href={service.link} target="_blank" rel="noopener" class="ml-2 underline text-blue-200 hover:text-blue-400">Voir portfolio</a>
+            )}
+          </span>
         </div>
       ))}
     </div>
@@ -29,7 +33,12 @@ import { services } from '../utils/services';
           {services.map(service => (
             <tr class="transition-colors duration-200 hover:bg-blue-900/30">
               <td class="w-1/4 px-6 py-5 font-bold align-top text-blue-50 whitespace-nowrap">{service.name}</td>
-              <td class="w-3/4 px-6 py-5 italic align-top text-blue-50">{service.description}</td>
+              <td class="w-3/4 px-6 py-5 italic align-top text-blue-50">
+                {service.description}
+                {service.link && (
+                  <a href={service.link} target="_blank" rel="noopener" class="ml-2 underline text-blue-200 hover:text-blue-400">Voir portfolio</a>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
