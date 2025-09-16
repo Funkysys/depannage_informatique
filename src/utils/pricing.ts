@@ -21,5 +21,5 @@ export const pricingTable: Pricing[] = [
   { service: "Installation", price: "à partir de 70€" },
   { service: "Réparation", price: "sur devis" },
   { service: "Contrat de maintenance", price: "sur devis" },
-  { service: "Développement", price: "350€/jour" },
+  { service: "Développement", price: "400€/jour" },
 ];
