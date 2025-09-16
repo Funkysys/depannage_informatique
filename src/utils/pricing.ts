@@ -8,7 +8,7 @@ export const pricingTable: Pricing[] = [
   { service: "Diagnostic", price: "45€ (offert en cas de prestation)" },
   {
     service: "Réinstallation de l'os",
-    price: "90€ windows/linux, 140€ macOS",
+    price: "90€ windows / linux, 140€ macOS",
   },
   { service: "Récupération de données", price: "sur devis" },
   { service: "Changement de disque dur et copie", price: "à partir de 100€" },
