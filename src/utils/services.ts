@@ -6,6 +6,11 @@ export type Service = {
 
 export const services: Service[] = [
   {
+    name: "Accompagnement numérique",
+    description:
+      "Assistance et conseils pour l'utilisation des outils numériques sous forme d'ateliers individuels ou collectifs.",
+  },
+  {
     name: "Nettoyage",
     description:
       "Nettoyage physique et/ou informatique de votre ordinateur comprenant les vérifications de sécurité.",

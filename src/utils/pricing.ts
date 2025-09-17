@@ -5,6 +5,7 @@ export type Pricing = {
 
 export const pricingTable: Pricing[] = [
   { service: "Déplacement", price: "30€ moins de 20km puis 0.5€/km" },
+  { service: "Accompagnement numérique", price: "40€/h" },
   { service: "Diagnostic", price: "45€ (offert en cas de prestation)" },
   {
     service: "Réinstallation de l'os",
