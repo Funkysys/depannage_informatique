@@ -1,5 +1,6 @@
 ---
 import Analytics from '@vercel/analytics/astro'
+import ChatBoxSimple from '../components/ChatBoxSimple.astro'
 ---
 
 <!doctype html>
@@ -11,21 +12,26 @@ import Analytics from '@vercel/analytics/astro'
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{Astro.props.title ?? 'Dépannage Informatique - Réparation, Conseil & Services à domicile'}</title>
-		<meta name="description" content="Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels. Intervention rapide et conseils personnalisés." />
-		<meta name="robots" content="index, follow" />
-		<meta name="author" content="FlowUP" />
-		<meta name="keywords" content="dépannage informatique, réparation PC, assistance informatique, cybersécurité, installation, conseil, maintenance, ordinateur, Mac, Windows, Paris, Île-de-France" />
+		<title>{Astro.props.title ?? 'Dépannage Informatique à Domicile - Réparation PC Mac | Antoine Delbos'}</title>
+		<meta name="description" content={Astro.props.description ?? "Dépannage informatique à domicile sur Toulouse et Haute-Garonne. Réparation PC/Mac, récupération de données, installation, formation. Intervention rapide 7j/7. Devis gratuit ☎️"} />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+		<meta name="author" content="Antoine Delbos" />
+		<meta name="keywords" content="dépannage informatique domicile, réparation ordinateur, assistance informatique Toulouse, technicien PC Mac Haute-Garonne, récupération données, installation Windows, cybersécurité, maintenance informatique, conseil achat ordinateur, formation informatique senior" />
 		<meta name="theme-color" content="#0ea5e9" />
+		<meta name="geo.region" content="FR-31" />
+		<meta name="geo.placename" content="Toulouse, Haute-Garonne" />
+		<meta name="DC.title" content="Dépannage Informatique à Domicile" />
 		<link rel="canonical" href="https://antoineinformatique.fr{Astro.url.pathname}" />
 		<link rel="alternate" href="https://antoineinformatique.fr{Astro.url.pathname}" hreflang="fr" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="dns-prefetch" href="https://api.resend.com" />
 		<!-- Open Graph -->
 		<meta property="og:type" content="website" />
 		<meta property="og:locale" content="fr_FR" />
 		<meta property="og:title" content="Dépannage Informatique - Réparation, Conseil & Services à domicile" />
 		<meta property="og:description" content="Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels." />
 		<meta property="og:url" content="https://antoineinformatique.fr{Astro.url.pathname}" />
-		<meta property="og:site_name" content="Dépannage Informatique" />
+		<meta property="og:site_name" content="Antoine Informatique" />
 		<meta property="og:image" content="https://antoineinformatique.fr/info.png" />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />
@@ -37,21 +43,83 @@ import Analytics from '@vercel/analytics/astro'
 		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 		<link rel="manifest" href="/site.webmanifest" />
-		<!-- Schema.org Organization -->
+		<!-- Schema.org Enhanced -->
 		<script type="application/ld+json">
 			{JSON.stringify({
 				'@context': 'https://schema.org',
 				'@type': 'LocalBusiness',
-				name: 'Dépannage Informatique',
+				'@id': 'https://antoineinformatique.fr/#business',
+				name: 'Antoine Delbos - Dépannage Informatique',
+				alternateName: 'Antoine Informatique',
 				url: 'https://antoineinformatique.fr',
 				logo: 'https://antoineinformatique.fr/info.png',
 				image: 'https://antoineinformatique.fr/info.png',
-				description: 'Dépannage informatique à domicile, réparation PC/Mac, conseils, installation, cybersécurité et assistance pour particuliers et professionnels.',
+				description: 'Dépannage informatique à domicile sur Toulouse et Haute-Garonne. Réparation PC/Mac, récupération de données, installation, formation. Intervention rapide 7j/7.',
+				priceRange: '€€',
+				telephone: '+33-6-12-34-56-78',
+				email: 'contact@antoineinformatique.fr',
 				address: {
 					'@type': 'PostalAddress',
-					addressLocality: 'Paris',
-					addressRegion: 'Île-de-France',
+					streetAddress: 'Secteur Lancefoc',
+					addressLocality: 'Toulouse',
+					addressRegion: 'Haute-Garonne',
+					postalCode: '31300',
 					addressCountry: 'FR',
+					areaServed: 'Haute-Garonne'
+				},
+				geo: {
+					'@type': 'GeoCoordinates',
+					latitude: '43.5884',
+					longitude: '1.4632'
+				},
+				openingHours: [
+					'Mo-Fr 09:00-19:00',
+					'Sa 10:00-17:00'
+				],
+				serviceArea: {
+					'@type': 'GeoCircle',
+					geoMidpoint: {
+						'@type': 'GeoCoordinates',
+						latitude: '43.5884',
+						longitude: '1.4632'
+					},
+					geoRadius: '25000'
+				},
+				hasOfferCatalog: {
+					'@type': 'OfferCatalog',
+					name: 'Services de dépannage informatique',
+					itemListElement: [
+						{
+							'@type': 'Offer',
+							itemOffered: {
+								'@type': 'Service',
+								name: 'Dépannage PC/Mac',
+								description: 'Réparation et maintenance ordinateurs'
+							}
+						},
+						{
+							'@type': 'Offer',
+							itemOffered: {
+								'@type': 'Service',
+								name: 'Récupération de données',
+								description: 'Récupération fichiers supprimés ou corrompus'
+							}
+						}
+					]
+				},
+				aggregateRating: {
+					'@type': 'AggregateRating',
+					ratingValue: '4.3',
+					reviewCount: '6',
+					bestRating: '5',
+					worstRating: '1'
+				},
+				contactPoint: {
+					'@type': 'ContactPoint',
+					telephone: '+33-6-12-34-56-78',
+					contactType: 'customer service',
+					availableLanguage: 'French',
+					areaServed: 'FR'
 				},
 				sameAs: [
 					'https://www.linkedin.com/in/antoine-delbos-916250223',
@@ -111,6 +179,7 @@ import Analytics from '@vercel/analytics/astro'
 				</div>
 			</div>
 		</footer>
+		<ChatBoxSimple />
 		<Analytics />
 	</body>
 </html>

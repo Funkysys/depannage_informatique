@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tondomaine.fr/sitemap.xml
+
+# Bloque les fichiers inutiles pour le SEO
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /src/
+Disallow: /*.json$
+
+# Permet les images
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.png$
+Allow: /*.gif$
+Allow: /*.svg$
+Allow: /*.webp$

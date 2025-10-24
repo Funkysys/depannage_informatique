@@ -1,0 +1,234 @@
+---
+---
+
+<!-- Bouton flottant chatbox -->
+<button 
+  id="chatbox-toggle" 
+  class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-full shadow-lg hover:from-blue-500 hover:to-blue-600 transition-all duration-300 flex items-center justify-center hover:scale-110"
+  aria-label="Ouvrir le chat"
+>
+  <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+  </svg>
+</button>
+
+<!-- Chatbox -->
+<div 
+  id="chatbox-modal" 
+  class="fixed bottom-6 right-6 z-60 w-80 sm:w-96 h-96 bg-gray-900/95 backdrop-blur-md rounded-2xl border-2 border-blue-700/50 shadow-2xl transform translate-y-full opacity-0 transition-all duration-300 ease-out hidden"
+>
+  <!-- Header -->
+  <div class="flex items-center justify-between p-4 border-b border-blue-800/50">
+    <div class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
+        <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-sm font-bold text-blue-100">Assistant IA</h3>
+        <p class="text-xs text-blue-300">En ligne</p>
+      </div>
+    </div>
+    <button id="chatbox-close" class="text-gray-400 hover:text-white transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Messages -->
+  <div id="chat-messages" class="flex-1 p-4 space-y-3 overflow-y-auto h-60">
+    <div class="flex items-start gap-2">
+      <div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex-shrink-0"></div>
+      <div class="bg-blue-900/40 rounded-lg rounded-tl-none p-3 max-w-xs">
+        <p class="text-sm text-blue-100">Bonjour ! Posez votre question technique, je vous répondrai par email.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input -->
+  <div class="p-4 border-t border-blue-800/50">
+    <form id="chat-form" class="flex gap-2">
+      <input 
+        type="text" 
+        id="chat-input" 
+        placeholder="Votre question..." 
+        class="flex-1 px-3 py-2 bg-gray-800 border border-blue-700 rounded-lg text-sm text-white placeholder-gray-400 focus:outline-none focus:border-blue-500"
+        required
+      />
+      <button 
+        type="submit"
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors"
+      >
+        ↗
+      </button>
+    </form>
+  </div>
+</div>
+
+<!-- Email Modal -->
+<div 
+  id="email-modal" 
+  class="fixed inset-0 z-70 flex items-center justify-center bg-black/50 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+>
+  <div class="bg-gray-900 rounded-2xl border-2 border-blue-700 p-6 w-full max-w-md mx-4 transform scale-95 transition-transform duration-300">
+    <h3 class="text-xl font-bold text-blue-100 mb-4">Votre email</h3>
+    <form id="email-form" class="space-y-4">
+      <input 
+        type="email" 
+        id="user-email" 
+        placeholder="votre@email.com"
+        required
+        class="w-full px-3 py-2 bg-gray-800 border border-blue-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+      />
+      <input 
+        type="text" 
+        id="user-name" 
+        placeholder="Votre nom (optionnel)"
+        class="w-full px-3 py-2 bg-gray-800 border border-blue-700 rounded-lg text-white focus:outline-none focus:border-blue-500"
+      />
+      <div class="flex gap-3">
+        <button 
+          type="button" 
+          id="email-cancel"
+          class="flex-1 px-4 py-2 bg-gray-700 hover:bg-gray-600 text-white rounded-lg transition-colors"
+        >
+          Annuler
+        </button>
+        <button 
+          type="submit"
+          class="flex-1 px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors"
+        >
+          Envoyer
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script type="module">
+  const toggle = document.getElementById('chatbox-toggle');
+  const modal = document.getElementById('chatbox-modal');
+  const close = document.getElementById('chatbox-close');
+  const form = document.getElementById('chat-form');
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  const emailModal = document.getElementById('email-modal');
+  const emailForm = document.getElementById('email-form');
+  const emailCancel = document.getElementById('email-cancel');
+  
+  let currentQuestion = '';
+  
+  // Ouvrir chat
+  toggle?.addEventListener('click', () => {
+    toggle.style.display = 'none'; // Masquer le bouton
+    modal.classList.remove('hidden');
+    setTimeout(() => {
+      modal.classList.remove('translate-y-full', 'opacity-0');
+      modal.classList.add('translate-y-0', 'opacity-100');
+    }, 10);
+    input?.focus();
+  });
+  
+  // Fermer chat
+  close?.addEventListener('click', () => {
+    modal.classList.remove('translate-y-0', 'opacity-100');
+    modal.classList.add('translate-y-full', 'opacity-0');
+    setTimeout(() => {
+      modal.classList.add('hidden');
+      toggle.style.display = 'flex'; // Réafficher le bouton
+    }, 300);
+  });
+  
+  // Question
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const question = input.value.trim();
+    if (!question) return;
+    
+    addMessage(question, 'user');
+    input.value = '';
+    
+    setTimeout(() => {
+      addMessage('Merci ! Je vais vous répondre par email. Votre adresse ?', 'ai');
+      currentQuestion = question;
+      showEmailModal();
+    }, 1000);
+  });
+  
+  // Email
+  emailForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('user-email').value;
+    const name = document.getElementById('user-name').value || 'Client';
+    
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name,
+          email,
+          message: `Question ChatBot: ${currentQuestion}`,
+          phone: ''
+        })
+      });
+      
+      if (response.ok) {
+        closeEmailModal();
+        addMessage(`Parfait ! Je vous répondrai bientôt à ${email} 📧`, 'ai');
+        setTimeout(() => close?.click(), 2000);
+      } else {
+        throw new Error('Erreur');
+      }
+    } catch {
+      addMessage('Erreur ! Utilisez le formulaire de contact.', 'ai');
+      closeEmailModal();
+    }
+  });
+  
+  emailCancel?.addEventListener('click', closeEmailModal);
+  
+  function showEmailModal() {
+    emailModal.classList.remove('pointer-events-none', 'opacity-0');
+    emailModal.classList.add('opacity-100');
+    emailModal.querySelector('.bg-gray-900').classList.remove('scale-95');
+    emailModal.querySelector('.bg-gray-900').classList.add('scale-100');
+    document.getElementById('user-email')?.focus();
+  }
+  
+  function closeEmailModal() {
+    emailModal.classList.remove('opacity-100');
+    emailModal.classList.add('opacity-0');
+    emailModal.querySelector('.bg-gray-900').classList.remove('scale-100');
+    emailModal.querySelector('.bg-gray-900').classList.add('scale-95');
+    setTimeout(() => {
+      emailModal.classList.add('pointer-events-none');
+    }, 300);
+    document.getElementById('email-form')?.reset();
+  }
+  
+  function addMessage(text, sender) {
+    const div = document.createElement('div');
+    div.className = `flex items-start gap-2 ${sender === 'user' ? 'flex-row-reverse' : ''}`;
+    
+    const avatar = sender === 'user' 
+      ? '<div class="w-6 h-6 bg-green-600 rounded-full flex-shrink-0 flex items-center justify-center"><span class="text-xs text-white font-bold">U</span></div>'
+      : '<div class="w-6 h-6 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex-shrink-0"></div>';
+    
+    const msgClass = sender === 'user' 
+      ? 'bg-green-700/40 rounded-lg rounded-tr-none' 
+      : 'bg-blue-900/40 rounded-lg rounded-tl-none';
+    
+    div.innerHTML = `
+      ${avatar}
+      <div class="${msgClass} p-3 max-w-xs">
+        <p class="text-sm text-blue-100">${text}</p>
+      </div>
+    `;
+    
+    messages.appendChild(div);
+    messages.scrollTop = messages.scrollHeight;
+  }
+</script>
