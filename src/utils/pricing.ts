@@ -8,7 +8,7 @@ export const pricingTable: Pricing[] = [
   { service: "Accompagnement numérique", price: "40€/h" },
   { service: "Diagnostic", price: "45€ (offert en cas de prestation)" },
   {
-    service: "Réinstallation de l'os",
+    service: "Réinstallation/mise à jour de l'os",
     price: "90€ windows / linux, 140€ macOS",
   },
   { service: "Récupération de données", price: "sur devis" },

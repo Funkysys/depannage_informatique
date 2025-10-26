@@ -149,7 +149,6 @@ import ChatBoxSimple from '../components/ChatBoxSimple.astro'
 				navToggle?.addEventListener('click', () => {
 					navMenu.classList.toggle('hidden');
 				});
-				// Fermer le menu au clic sur un lien (mobile)
 				navMenu?.querySelectorAll('a').forEach(link => {
 					link.addEventListener('click', () => {
 						if (window.innerWidth < 640) navMenu.classList.add('hidden');
